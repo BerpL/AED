@@ -35,7 +35,6 @@ public:
 
 	~Cnode() {
 		m_node[0] = m_node[1] = 0;
-		cout << "node deleted: " << endl;
 	}
 
 	T m_data;
@@ -54,6 +53,7 @@ public:
 	void displayinorder(Cnode<T>*p);
 	void displaypreorder(Cnode<T>*p);
 	void displaypostorder(Cnode<T>*p);
+	void getroot();
 	Cnode<T>* m_root;
 	S cmp;
 };
@@ -91,7 +91,7 @@ void rep(Cnode<T> **&q) {
 template <class T, class S>
 bool Btree<T, S>::remove(T x) {
 	Cnode<T> **p;
-	if (!find(x,p))return 0;
+	if (!find(x, p))return 0;
 	if ((*p)->m_node[0] && (*p)->m_node[1]) {
 		//Nodo<T> **q = &((*p)->right->left);
 		Cnode<T> **q = &m_root;
@@ -130,10 +130,13 @@ void Btree<T, S>::displaypostorder(Cnode<T>*p) {
 	displaypostorder(p->m_node[1]);
 	cout << (p->m_data) << endl;
 }
-
+template<class T, class S>
+void Btree<T, S>::getroot() {
+	cout <<"Root :"<<m_root->m_data << endl;
+}
 
 int main() {
-	
+
 	Btree<int, minor<int> >arbolitodenectar;
 	arbolitodenectar.insert(77);
 	arbolitodenectar.insert(42);
@@ -142,7 +145,16 @@ int main() {
 	arbolitodenectar.insert(34);
 	arbolitodenectar.insert(63);
 	arbolitodenectar.insert(69);
-	//arbolitodenectar.remove(69);
+	arbolitodenectar.remove(69);
+	arbolitodenectar.remove(77);
+	arbolitodenectar.remove(42);
+	arbolitodenectar.remove(63);
+	arbolitodenectar.remove(47);
+	arbolitodenectar.remove(34);
+	arbolitodenectar.remove(89);
+
+
+	//arbolitodenectar.getroot();
 	cout << "INORDER" << endl;
 	arbolitodenectar.displayinorder(arbolitodenectar.m_root);
 	cout << "PREORDER" << endl;
