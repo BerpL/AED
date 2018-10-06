@@ -59,33 +59,33 @@ bool DoublyLinkedList<T>::find(T x, Cnode<T>*& p) {
 
 template<class T>
 void DoublyLinkedList<T>::i(T x, Cnode<T>* &p, Cnode<T>* &q) {
-		q = new Cnode<T>(x);
-		if (!m_head) {
-			m_head = q;
+	q = new Cnode<T>(x);
+	if (!m_head) {
+		m_head = q;
+		m_tail = q;
+		q->m_prev = NULL;
+		q->m_next = NULL;
+	}
+	else {
+		if (!(p->m_next)) { ///p->next es nulo, insercion al final
 			m_tail = q;
-			q->m_prev = NULL;
-			q->m_next = NULL;
+			q->m_next = p->m_next;
+			p->m_next = q;
+			q->m_prev = p;
 		}
-		else {
-			if (!(p->m_next)) { ///p->next es nulo, insercion al final
-				m_tail = q;
-				q->m_next = p->m_next;
-				p->m_next = q;
-				q->m_prev = p;
-			}
-			else if (!(p->m_prev)) { ///p->prev es nulo, insercion al comienzo
-				m_head = q;
-				q->m_prev = p->m_prev;
-				p->m_prev = q;
-				q->m_next = p;
-			}
-			else { ///insercion al medio
-				q->m_next = p;
-				q->m_prev = p->m_prev;
-				q->m_prev->m_next = q;
-				p->m_prev = q;
-			}
-		}	
+		else if (!(p->m_prev)) { ///p->prev es nulo, insercion al comienzo
+			m_head = q;
+			q->m_prev = p->m_prev;
+			p->m_prev = q;
+			q->m_next = p;
+		}
+		else { ///insercion al medio
+			q->m_next = p;
+			q->m_prev = p->m_prev;
+			q->m_prev->m_next = q;
+			p->m_prev = q;
+		}
+	}
 }
 
 template <class T>
@@ -97,7 +97,7 @@ bool DoublyLinkedList<T>::insert(T x) {
 	}
 	i(x, p, q);
 	return 1;
-	
+
 }
 template <class T>
 bool DoublyLinkedList<T>::remove(T x) {
@@ -148,35 +148,19 @@ void DoublyLinkedList<T>::displaytail() {
 
 int main() {
 	DoublyLinkedList<int> List;
-	List.insert(5);
+	List.insert(1);
+	List.insert(2);
+	List.insert(3);
+	List.insert(4);
 	List.insert(5);
 	List.displayhead();
-	List.displaytail();
+	List.remove(3);
+	List.displayhead();
+	List.remove(1);
 	List.remove(5);
 	List.displayhead();
-	List.displaytail();
-	List.insert(8);
-	List.insert(10);
-	List.insert(12);
+	List.remove(2);
+	List.remove(4);
 	List.displayhead();
-	List.displaytail();
-	List.insert(9);
-	List.displayhead();
-	List.displaytail();
-	List.insert(1);
-	List.displayhead();
-	List.displaytail();
-	List.insert(7);
-	List.displayhead();
-	List.displaytail();
-	List.remove(8);
-	List.displayhead();
-	List.displaytail();
-	List.remove(1);
-	List.displayhead();
-	List.displaytail();
-	List.remove(12);
-	List.displayhead();
-	List.displaytail();
 	return 0;
 }
