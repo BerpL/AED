@@ -16,8 +16,8 @@ public:
 
 template <class T>
 Cnode<T>::Cnode(T x, Cnode<T>* nxt) {
-	this->m_data = x;
-	this->m_next = nxt;
+	m_data = x;
+	m_next = nxt;
 }
 
 template <class T>
