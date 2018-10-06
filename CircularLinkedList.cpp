@@ -107,5 +107,7 @@ int main() {
 	List.display();
 	List.remove(8);
 	List.display();
+	List.remove(2);
+	List.display();
 	return 0;
 }
