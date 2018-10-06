@@ -1,5 +1,5 @@
 // CircularLinkedList.cpp : Este archivo contiene la función "main". La ejecución del programa comienza y termina ahí.
-//
+// Double Pointer
 
 #include "pch.h"
 #include <iostream>
@@ -91,7 +91,6 @@ void CircularLinkedList<T>::display() {
 		t = (t)->m_next;
 		aux = 0;
 	}
-	cout << "NULL";
 	cout << endl;
 }
 
